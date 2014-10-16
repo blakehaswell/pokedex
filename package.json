@@ -5,5 +5,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/blakehaswell/pokedex.git"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.5"
   }
 }
