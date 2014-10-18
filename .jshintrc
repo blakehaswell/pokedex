@@ -13,6 +13,14 @@
   "node"      : true,
   "noempty"   : true,
   "nonew"     : true,
+  "predef"    : [
+    "after",
+    "afterEach",
+    "before",
+    "beforeEach",
+    "describe",
+    "it"
+  ],
   "quotmark"  : "single",
   "undef"     : true,
   "unused"    : true

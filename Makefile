@@ -1,15 +1,27 @@
-SRC_DIR = src
+BROWSERIFY     = node_modules/.bin/browserify
+JSHINT         = node_modules/.bin/jshint
+MOCHA          = node_modules/.bin/mocha-phantomjs
 
-JS_EXT        = *.js
-JS_TEST_EXT   = *.test.js
-JS_FILES      = $(shell find $(SRC_DIR)/js -type f -name '$(JS_EXT)')
-JS_SRC_FILES  = $(shell find $(SRC_DIR)/js -type f -name '$(JS_EXT)' -not -name '$(JS_TEST_EXT)')
-JS_TEST_FILES = $(shell find $(SRC_DIR)/js -type f -name '$(JS_TEST_EXT)')
+SRC_DIR        = src
+DIST_DIR       = dist
+TEST_DIR       = tests
+
+JS_EXT         = *.js
+JS_TEST_EXT    = *.test.js
+JS_FILES       = $(shell find $(SRC_DIR)/js -type f -name '$(JS_EXT)')
+JS_SRC_FILES   = $(shell find $(SRC_DIR)/js -type f -name '$(JS_EXT)' -not -name '$(JS_TEST_EXT)')
+JS_TEST_FILES  = $(shell find $(SRC_DIR)/js -type f -name '$(JS_TEST_EXT)')
+
+JS_TEST_BUNDLE = $(DIST_DIR)/tests.js
+TEST_RUNNER    = $(TEST_DIR)/runner.html
 
 jshint:
-	@node_modules/.bin/jshint $(JS_FILES)
+	@$(JSHINT) $(JS_FILES)
 
-test: jshint
-	@node_modules/.bin/mocha $(JS_TEST_FILES)
+$(JS_TEST_BUNDLE): $(JS_FILES)
+	@$(BROWSERIFY) $(JS_TEST_FILES) -o $(JS_TEST_BUNDLE)
+
+test: jshint $(JS_TEST_BUNDLE)
+	@$(MOCHA) $(TEST_RUNNER)
 
 .PHONY: jshint test
