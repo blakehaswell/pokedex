@@ -19,7 +19,8 @@
     "istanbul": "^0.3.2",
     "lodash.partial": "^2.4.1",
     "lodash.contains": "^2.4.1",
-    "lodash.every": "^2.4.1"
+    "lodash.every": "^2.4.1",
+    "plato": "^1.2.0"
   },
   "browserify": {
     "transform": [
