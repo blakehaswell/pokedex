@@ -16,7 +16,10 @@
     "browserify-shim": "^3.8.0",
     "q": "^1.0.1",
     "jquery": "^2.1.1",
-    "istanbul": "^0.3.2"
+    "istanbul": "^0.3.2",
+    "lodash.partial": "^2.4.1",
+    "lodash.contains": "^2.4.1",
+    "lodash.every": "^2.4.1"
   },
   "browserify": {
     "transform": [
