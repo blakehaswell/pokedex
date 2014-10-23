@@ -1,8 +1,10 @@
 {
   "bitwise"   : true,
+  "browser"   : true,
   "camelcase" : true,
   "curly"     : true,
   "eqeqeq"    : true,
+  "expr"      : true,
   "forin"     : true,
   "immed"     : true,
   "indent"    : 4,

@@ -20,7 +20,9 @@
     "lodash.partial": "^2.4.1",
     "lodash.contains": "^2.4.1",
     "lodash.every": "^2.4.1",
-    "plato": "^1.2.0"
+    "plato": "^1.2.0",
+    "react": "^0.11.2",
+    "es5-shim": "^4.0.3"
   },
   "browserify": {
     "transform": [

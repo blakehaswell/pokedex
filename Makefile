@@ -61,12 +61,10 @@ $(COV_TEST_RUNNER): $(COV_DIR)
 	@mkdir -p $(COV_DIR)/$(TEST_DIR)
 	@sed -e 's|\.\./node_modules|\.\./\.\./\.\./node_modules|g' $(TEST_RUNNER) > $(COV_TEST_RUNNER)
 
-$(COV_JS_TEST_BUNDLE): $(JS_FILES) $(COV_DIST_DIR) $(COV_JS_DIR)
-	@cp $(JS_TEST_FILES) $(COV_JS_DIR)
+$(COV_DIR)/index.html: $(JS_FILES) $(COV_TEST_RUNNER) $(COV_JS_DIR)
+	@cp -R $(JS_DIR)/ $(COV_JS_DIR)
+	@$(ISTANBUL) instrument --output $(COV_JS_DIR) -x $(JS_TEST_EXT) $(JS_DIR)
 	@$(BROWSERIFY) $(COV_JS_TEST_FILES) -o $(COV_JS_TEST_BUNDLE)
-
-$(COV_DIR)/index.html: $(JS_FILES) $(COV_TEST_RUNNER) $(COV_JS_DIR) $(COV_JS_TEST_BUNDLE)
-	@$(ISTANBUL) instrument --output $(COV_JS_DIR) $(JS_DIR) -x $(JS_TEST_EXT)
 	@$(MOCHA) $(COV_TEST_RUNNER) -k $(TEST_DIR)/mocha-coverage-hook.js
 	@$(ISTANBUL) report --dir $(COV_DIR) html --include=$(COV_DIR)/coverage.json
 
